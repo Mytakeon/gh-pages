@@ -9,4 +9,3 @@
 	<slot />
 </main>
 
-<footer>Footer here</footer>
