@@ -16,9 +16,12 @@
 			})
 		);
 
-		const tags = [...new Set(allPosts.map((post) => post.meta.tags[0]))];
+		const allTags = [].concat.apply(
+			[],
+			allPosts.map((post) => post.meta.tags)
+		);
 
-		return { props: { posts: allPosts, tags } };
+		return { props: { posts: allPosts, tags: [...new Set(allTags)] } };
 	};
 </script>
 
@@ -33,10 +36,7 @@
 	const colors = ['#FBECDD', '#FBF3DB', '#EDF3EC', '#E7F3F8', '#FDEBEC'];
 	onMount(() => {
 		const urlParams = new URLSearchParams(window.location.search);
-		const initialCategories = urlParams.get('categories');
-
 		currentTag = urlParams.get('tag') ?? '';
-		console.log({ currentTag });
 	});
 </script>
 
@@ -111,5 +111,14 @@ Browse by tags:
 
 	div.tags {
 		display: inline-block;
+	}
+
+	a {
+		text-decoration: none;
+		color: inherit;
+	}
+
+	ul {
+		list-style-type: none;
 	}
 </style>
