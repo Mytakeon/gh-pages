@@ -78,7 +78,7 @@ Browse by tags:
 		{#if !currentTag || post.meta.tags.includes(currentTag)}
 			<li>
 				<h2>
-					<a href="{base}{post.path}">
+					<a href="{base}/{post.path}">
 						{post.meta.title}
 					</a>
 				</h2>

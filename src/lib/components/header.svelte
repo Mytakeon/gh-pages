@@ -1,21 +1,19 @@
 <script>
 	import { base } from '$app/paths';
 	import { page } from '$app/stores';
-
-	const route = $page.routeId;
 </script>
 
 <header>
 	<nav>
 		<ul>
 			<li>
-				<a class:active={route === ''} href="{base}/">Blog</a>
+				<a class:active={$page.routeId === ''} href="{base}/">Blog</a>
 			</li>
 			<li>
-				<a class:active={route.includes('projects')} href="{base}/projects">Projects</a>
+				<a class:active={$page.routeId.includes('projects')} href="{base}/projects">Projects</a>
 			</li>
 			<li>
-				<a class:active={route.includes('about')} href="{base}/about">About</a>
+				<a class:active={$page.routeId.includes('about')} href="{base}/about">About</a>
 			</li>
 		</ul>
 	</nav>
