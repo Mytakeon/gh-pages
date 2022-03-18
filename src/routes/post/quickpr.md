@@ -6,7 +6,7 @@ tags:
   - 'git'
 ---
 
-I often end up create small alias or utilities to use Git in the CLI.
+I often create small aliases or utilities to use Git in the CLI.
 I use the following (super simple) function to speed-up the process of opening a pull request in Azure DevOps (ADO):
 
 ```powershell

@@ -1,14 +1,21 @@
+<script>
+	import { base } from '$app/paths';
+	import { page } from '$app/stores';
+
+	const route = $page.routeId;
+</script>
+
 <header>
 	<nav>
 		<ul>
 			<li>
-				<a href="/blog">Blog</a>
+				<a class:active={route === ''} href="{base}/">Blog</a>
 			</li>
 			<li>
-				<a href="/projects">Projects</a>
+				<a class:active={route.includes('projects')} href="{base}/projects">Projects</a>
 			</li>
 			<li>
-				<a href="/about">About</a>
+				<a class:active={route.includes('about')} href="{base}/about">About</a>
 			</li>
 		</ul>
 	</nav>
@@ -18,6 +25,11 @@
 	a {
 		text-decoration: none;
 		color: inherit;
+	}
+
+	a.active {
+		text-decoration: solid;
+		text-decoration-line: underline;
 	}
 
 	ul {
