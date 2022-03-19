@@ -4,13 +4,10 @@ import adapter from '@sveltejs/adapter-static';
 import sveltePreprocess from 'svelte-preprocess';
 import { mdsvex } from 'mdsvex';
 
-const dev = process.env.NODE_ENV === 'development';
-
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	kit: {
-		adapter: adapter({ pages: 'docs', assets: 'docs', fallback: 'index.html' }),
-		paths: { base: dev ? '' : '/gh-pages' }
+		adapter: adapter()
 	},
 	// Allows markdown files to be imported as if they were svelte components
 	extensions: ['.svelte', '.md'],
