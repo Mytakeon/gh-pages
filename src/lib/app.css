@@ -9,6 +9,10 @@ body {
 	font-family: sans-serif;
 }
 
+div#post p {
+	margin-top: 1em;
+}
+
 main {
 	padding: 1rem;
 	margin: 2rem auto;

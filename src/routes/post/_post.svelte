@@ -9,11 +9,11 @@
 	<meta property="og:title" content={title} />
 </svelte:head>
 
-<h1 class="text-3xl">{title}</h1>
+<h1 class="text-3xl py-2">{title}</h1>
 
 <p class="text-xl">Published: {date}</p>
-<p>tags: {tags.join(', ')}</p>
+<p>Tags: {tags.join(', ')}</p>
 
-<div>
+<div id="post" class="py-5">
 	<slot />
 </div>
