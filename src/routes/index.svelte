@@ -41,43 +41,45 @@
 	});
 </script>
 
-<h1>Blog</h1>
-Browse by tags:
-<div class="tags">
-	{#each tags as tag, index}
-		<span
-			class="tag"
-			class:selected={currentTag === tag}
-			style="background-color: {colors[index]}"
-			on:click={() => {
-				currentTag = tag;
-				window.history.pushState({}, '', `?tag=${tag}`);
-			}}
-		>
-			{'#' + tag}
-		</span>
-		{#if index === tags.length - 1}
-			{#if currentTag !== ''}
-				<span
-					class="close"
-					on:click={() => {
-						window.history.pushState({}, '', `${base}/`);
-						currentTag = '';
-					}}
-					>X
-				</span>
+<h1 class="text-4xl py-4">Blog</h1>
+<div class="py-3">
+	Browse by tags:
+	<div class="inline-block">
+		{#each tags as tag, index}
+			<span
+				class="p-1 rounded-md border-solid border-2 border-gray-300 cursor-pointer"
+				class:selected={currentTag === tag}
+				style="background-color: {colors[index]}"
+				on:click={() => {
+					currentTag = tag;
+					window.history.pushState({}, '', `?tag=${tag}`);
+				}}
+			>
+				{'#' + tag}
+			</span>
+			{#if index === tags.length - 1}
+				{#if currentTag !== ''}
+					<span
+						class="cursor-pointer"
+						on:click={() => {
+							window.history.pushState({}, '', `${base}/`);
+							currentTag = '';
+						}}
+						>X
+					</span>
+				{/if}
+			{:else}
+				<span>, </span>
 			{/if}
-		{:else}
-			<span>, </span>
-		{/if}
-	{/each}
+		{/each}
+	</div>
 </div>
 
 <ul>
 	{#each posts as post}
 		{#if !currentTag || post.meta.tags.includes(currentTag)}
 			<li>
-				<h2>
+				<h2 class="text-2xl py-2">
 					<a href="{base}/{post.path}">
 						{post.meta.title}
 					</a>
@@ -89,37 +91,7 @@ Browse by tags:
 </ul>
 
 <style>
-	span.tag {
-		background-color: rgb(251, 236, 221);
-		box-shadow: rgb(15 15 15 / 10%) 0px 0px 0px 1px inset;
-		border-radius: 3px;
-		padding-left: 0.3em;
-		padding-right: 0.3em;
-		padding-top: 0.1em;
-		padding-bottom: 0.1em;
-		color: inherit;
-		text-decoration: none;
-	}
-	span.tag:hover {
-		cursor: pointer;
-	}
-	span.close:hover {
-		cursor: pointer;
-	}
-	span.tag.selected {
+	span.selected {
 		text-decoration: underline;
-	}
-
-	div.tags {
-		display: inline-block;
-	}
-
-	a {
-		text-decoration: none;
-		color: inherit;
-	}
-
-	ul {
-		list-style-type: none;
 	}
 </style>
