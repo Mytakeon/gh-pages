@@ -4,13 +4,22 @@
 
 body {
 	margin: 0;
-	background: #eee;
 	color: #333;
 	font-family: sans-serif;
 }
 
+/* Should overwrite the tailwind base settings somewhere else?  */
 div#post p {
 	margin-top: 1em;
+}
+
+h1 {
+	font-size: 1.5em;
+	margin-top: 0.5em;
+}
+
+a {
+	text-decoration-line: underline;
 }
 
 main {

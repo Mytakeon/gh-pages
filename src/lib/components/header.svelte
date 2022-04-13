@@ -20,6 +20,10 @@
 </header>
 
 <style>
+	a {
+		text-decoration: none;
+		font-size: large;
+	}
 	a.active {
 		text-decoration: solid;
 		text-decoration-line: underline;
