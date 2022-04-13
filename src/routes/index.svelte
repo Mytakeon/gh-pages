@@ -41,7 +41,7 @@
 	});
 </script>
 
-<h1 class="text-2xl py-4">Blog</h1>
+<h1 class="pb-4">Blog</h1>
 <div class="py-3">
 	Browse by tags:
 	<div class="inline-block">
@@ -79,10 +79,14 @@
 	{#each posts as post}
 		{#if !currentTag || post.meta.tags.includes(currentTag)}
 			<li class="py-2">
-				<a class="text-2xl no-underline" href="{base}/{post.path}">
-					{post.meta.title}
-				</a>
-				Published {post.meta.date}
+				<div>
+					<a class="text-2xl no-underline" href="{base}/{post.path}">
+						{post.meta.title}
+					</a>
+					<p>
+						Published {post.meta.date}
+					</p>
+				</div>
 			</li>
 		{/if}
 	{/each}

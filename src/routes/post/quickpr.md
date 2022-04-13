@@ -1,6 +1,6 @@
 ---
 title: 'Quick PR helper for Azure DevOps'
-date: '17/03/2022'
+date: '2022-03-17'
 tags:
   - 'powershell'
   - 'git'
