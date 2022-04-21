@@ -14,6 +14,6 @@
 <p class="text-xl">Published: {date}</p>
 <p>Tags: {tags.join(', ')}</p>
 
-<div id="post" class="py-5">
+<div class="py-5 post">
 	<slot />
 </div>

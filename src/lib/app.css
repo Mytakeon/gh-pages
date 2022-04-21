@@ -8,18 +8,28 @@ body {
 	font-family: sans-serif;
 }
 
-/* Should overwrite the tailwind base settings somewhere else?  */
-div#post p {
-	margin-top: 1em;
+/* Overwrite the tailwind base settings for posts  */
+.post p {
+	@apply my-4;
+}
+
+.post ul {
+	@apply list-disc my-1 pl-10;
+}
+
+.post code {
+	@apply bg-gray-100 p-[0.1em] rounded text-red-500;
 }
 
 h1 {
-	font-size: 1.5em;
-	margin-top: 0.5em;
+	@apply text-3xl  my-2;
+}
+h2 {
+	@apply text-2xl  my-3;
 }
 
 a {
-	text-decoration-line: underline;
+	@apply underline;
 }
 
 main {

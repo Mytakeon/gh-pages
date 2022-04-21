@@ -1,24 +1,20 @@
 <!-- Runs server side, before component is rendered -->
 <script context="module">
-	const allPostFiles = import.meta.glob('./post/*.md');
-	const iterablePostFiles = Object.entries(allPostFiles);
-
 	export const load = async () => {
+		const allPostFiles = import.meta.glob('./post/*.md');
+		const iterablePostFiles = Object.entries(allPostFiles);
+
 		const allPosts = await Promise.all(
 			iterablePostFiles.map(async ([path, resolver]) => {
 				const { metadata } = await resolver();
-				const postPath = path.slice(2, -3);
 
-				return {
-					meta: metadata,
-					path: postPath
-				};
+				return { metadata, path: path.slice(2, -3) };
 			})
 		);
 
 		const allTags = [].concat.apply(
 			[],
-			allPosts.map((post) => post.meta.tags)
+			allPosts.map((post) => post.metadata.tags)
 		);
 
 		return { props: { posts: allPosts, tags: [...new Set(allTags)] } };
@@ -77,14 +73,14 @@
 
 <ul>
 	{#each posts as post}
-		{#if !currentTag || post.meta.tags.includes(currentTag)}
+		{#if !currentTag || post.metadata.tags.includes(currentTag)}
 			<li class="py-2">
 				<div>
 					<a class="text-2xl no-underline" href="{base}/{post.path}">
-						{post.meta.title}
+						{post.metadata.title}
 					</a>
 					<p>
-						Published {post.meta.date}
+						Published {post.metadata.date}
 					</p>
 				</div>
 			</li>
