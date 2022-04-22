@@ -8,12 +8,13 @@
 		metadata: PostMetadata;
 		path: string;
 	}
+
 	/** @type {import('./index').Load} */
 	export const load = async () => {
 		const allPostFiles = import.meta.glob('./post/*.md');
 		const iterablePostFiles = Object.entries(allPostFiles);
 
-		const allPosts = await Promise.all(
+		const posts = await Promise.all(
 			iterablePostFiles.map(async ([path, resolver]) => {
 				const { metadata } = await resolver();
 
@@ -21,60 +22,42 @@
 			})
 		);
 
-		const allTags = [].concat.apply(
-			[],
-			allPosts.map((post) => post.metadata.tags)
-		);
-
-		return { props: { posts: allPosts, tags: [...new Set(allTags)] } };
+		return { props: { posts } };
 	};
 </script>
 
 <!-- runs client side -->
 <script lang="ts">
-	import { base } from '$app/paths';
+	import { currentTagName, tagColors } from '$lib/stores';
 	import { onMount } from 'svelte';
 
 	export let posts: Post[];
-	export let tags: string[];
-	let currentTag: string;
 
-	const colors = ['#FBECDD', '#FBF3DB', '#EDF3EC', '#E7F3F8', '#FDEBEC'];
 	onMount(() => {
 		const urlParams = new URLSearchParams(window.location.search);
-		currentTag = urlParams.get('tag') ?? '';
+		$currentTagName = urlParams.get('tag') ?? '';
 	});
+	const tagsIterable = Object.entries(tagColors);
 </script>
 
-<h1 class="pb-4">Blog</h1>
+<h1 class="pb-1">Blog</h1>
 <div class="py-3">
 	Browse by tags:
 	<div class="inline-block">
-		{#each tags as tag, index}
-			<span
-				class="p-1 rounded-md border-solid cursor-pointer"
-				class:selected={currentTag === tag}
-				style:background-color={colors[index]}
-				on:click={() => {
-					currentTag = tag;
-					window.history.pushState({}, '', `?tag=${tag}`);
-				}}
+		{#each tagsIterable as [tag, color], index}
+			<a
+				href={`/?tag=${tag}`}
+				on:click={() => currentTagName.set(tag)}
+				class="p-1 rounded-md border-solid cursor-pointer no-underline"
+				class:selected={$currentTagName === tag}
+				style:background-color={color}
 			>
 				{'#' + tag}
-			</span>
-			{#if index === tags.length - 1}
-				{#if currentTag !== ''}
-					<span
-						class="cursor-pointer"
-						on:click={() => {
-							window.history.pushState({}, '', `${base}/`);
-							currentTag = '';
-						}}
-						>X
-					</span>
+			</a>
+			{#if index === tagsIterable.length - 1}
+				{#if $currentTagName !== ''}
+					<a href={`/`} class="cursor-pointer no-underline" on:click={() => currentTagName.set('')}>X </a>
 				{/if}
-			{:else}
-				<span>, </span>
 			{/if}
 		{/each}
 	</div>
@@ -82,10 +65,10 @@
 
 <ul>
 	{#each posts as post}
-		{#if !currentTag || post.metadata.tags.includes(currentTag)}
+		{#if !$currentTagName || post.metadata.tags.includes($currentTagName)}
 			<li class="py-2">
 				<div>
-					<a class="text-2xl no-underline" href="{base}/{post.path}">
+					<a class="text-2xl no-underline" href={post.path}>
 						{post.metadata.title}
 					</a>
 					<p>
@@ -98,7 +81,7 @@
 </ul>
 
 <style>
-	span.selected {
+	a.selected {
 		text-decoration: underline;
 	}
 </style>
