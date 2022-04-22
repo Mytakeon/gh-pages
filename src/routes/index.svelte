@@ -10,7 +10,8 @@
 	}
 
 	/** @type {import('./index').Load} */
-	export const load = async () => {
+	export const load = async ({ url }) => {
+		const tag: string | null = url.searchParams.get('tag');
 		const allPostFiles = import.meta.glob('./post/*.md');
 		const iterablePostFiles = Object.entries(allPostFiles);
 
@@ -22,21 +23,18 @@
 			})
 		);
 
-		return { props: { posts } };
+		return { props: { posts, tag } };
 	};
 </script>
 
-<!-- runs client side -->
 <script lang="ts">
 	import { currentTagName, tagColors } from '$lib/stores';
-	import { onMount } from 'svelte';
 
 	export let posts: Post[];
+	export let tag: string | null;
 
-	onMount(() => {
-		const urlParams = new URLSearchParams(window.location.search);
-		$currentTagName = urlParams.get('tag') ?? '';
-	});
+	if (tag) currentTagName.set(tag);
+
 	const tagsIterable = Object.entries(tagColors);
 </script>
 
