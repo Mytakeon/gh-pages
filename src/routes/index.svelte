@@ -43,9 +43,9 @@
 	<div class="inline-block">
 		{#each tags as tag, index}
 			<span
-				class="p-1 rounded-md border-solid border-2 border-gray-300 cursor-pointer"
+				class="p-1 rounded-md border-solid cursor-pointer"
 				class:selected={currentTag === tag}
-				style="background-color: {colors[index]}"
+				style:background-color={colors[index]}
 				on:click={() => {
 					currentTag = tag;
 					window.history.pushState({}, '', `?tag=${tag}`);
