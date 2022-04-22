@@ -1,5 +1,14 @@
-<!-- Runs server side, before component is rendered -->
-<script context="module">
+<script context="module" lang="ts">
+	interface PostMetadata {
+		title: string;
+		tags: string[];
+		date: string;
+	}
+	interface Post {
+		metadata: PostMetadata;
+		path: string;
+	}
+	/** @type {import('./index').Load} */
 	export const load = async () => {
 		const allPostFiles = import.meta.glob('./post/*.md');
 		const iterablePostFiles = Object.entries(allPostFiles);
@@ -22,13 +31,13 @@
 </script>
 
 <!-- runs client side -->
-<script>
+<script lang="ts">
 	import { base } from '$app/paths';
 	import { onMount } from 'svelte';
 
-	export let posts;
-	export let tags;
-	let currentTag;
+	export let posts: Post[];
+	export let tags: string[];
+	let currentTag: string;
 
 	const colors = ['#FBECDD', '#FBF3DB', '#EDF3EC', '#E7F3F8', '#FDEBEC'];
 	onMount(() => {
