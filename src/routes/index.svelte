@@ -1,4 +1,6 @@
 <script context="module" lang="ts">
+	import type { Load } from '@sveltejs/kit';
+
 	interface PostMetadata {
 		title: string;
 		tags: string[];
@@ -9,9 +11,8 @@
 		path: string;
 	}
 
-	/** @type {import('./index').Load} */
-	export const load = async ({ url }) => {
-		const tag: string | null = url.searchParams.get('tag');
+	export const load: Load = async ({ url }) => {
+		const tag = url.searchParams.get('tag');
 		const allPostFiles = import.meta.glob('./post/*.md');
 		const iterablePostFiles = Object.entries(allPostFiles);
 
@@ -53,8 +54,10 @@
 				{'#' + tag}
 			</a>
 			{#if index === tagsIterable.length - 1}
-				{#if $currentTagName !== ''}
-					<a href={`/`} class="cursor-pointer no-underline" on:click={() => currentTagName.set('')}>X </a>
+				{#if $currentTagName}
+					<a href={`/`} class="cursor-pointer no-underline" on:click={() => currentTagName.set(undefined)}
+						>X
+					</a>
 				{/if}
 			{/if}
 		{/each}
