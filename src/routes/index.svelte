@@ -45,8 +45,12 @@
 	const tagsIterable = Object.entries(tagColors);
 
 	// Hook into CSR to update `currentTagName` depending on the <a/> navigation
-	beforeNavigate(({ to }) => {
-		currentTagName = to?.searchParams.get('tag') ?? undefined;
+	beforeNavigate(({ to, from }) => {
+		const fromTag = from?.searchParams.get('tag');
+		const toTag = to?.searchParams.get('tag');
+		// on "index?tag=a" page refresh, toTag is null, ignore it
+		if (fromTag && toTag === undefined) return;
+		currentTagName = toTag ?? undefined;
 	});
 </script>
 
