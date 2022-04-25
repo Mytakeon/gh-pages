@@ -29,14 +29,25 @@
 </script>
 
 <script lang="ts">
-	import { currentTagName, tagColors } from '$lib/stores';
+	import { tagColors } from '$lib/stores';
+	import { beforeNavigate } from '$app/navigation';
 
 	export let posts: Post[];
 	export let tag: string | null;
 
-	if (tag) currentTagName.set(tag);
+	let currentTagName: string | undefined;
+	if (tag) currentTagName = tag;
+
+	$: filteredPosts = posts.filter((post) =>
+		currentTagName ? post.metadata.tags.includes(currentTagName) : true
+	);
 
 	const tagsIterable = Object.entries(tagColors);
+
+	// Hook into CSR to update `currentTagName` depending on the <a/> navigation
+	beforeNavigate(({ to }) => {
+		currentTagName = to?.searchParams.get('tag') ?? undefined;
+	});
 </script>
 
 <h1 class="pb-1">Blog</h1>
@@ -46,18 +57,15 @@
 		{#each tagsIterable as [tag, color], index}
 			<a
 				href={`/?tag=${tag}`}
-				on:click={() => currentTagName.set(tag)}
 				class="p-1 rounded-md border-solid cursor-pointer no-underline"
-				class:selected={$currentTagName === tag}
+				class:selected={currentTagName === tag}
 				style:background-color={color}
 			>
 				{'#' + tag}
 			</a>
 			{#if index === tagsIterable.length - 1}
-				{#if $currentTagName}
-					<a href={`/`} class="cursor-pointer no-underline" on:click={() => currentTagName.set(undefined)}
-						>X
-					</a>
+				{#if currentTagName}
+					<a href={`/`} class="cursor-pointer no-underline">X </a>
 				{/if}
 			{/if}
 		{/each}
@@ -65,19 +73,17 @@
 </div>
 
 <ul>
-	{#each posts as post}
-		{#if !$currentTagName || post.metadata.tags.includes($currentTagName)}
-			<li class="py-2">
-				<div>
-					<a class="text-2xl no-underline" href={post.path}>
-						{post.metadata.title}
-					</a>
-					<p>
-						Published {post.metadata.date}
-					</p>
-				</div>
-			</li>
-		{/if}
+	{#each filteredPosts as post}
+		<li class="py-2">
+			<div>
+				<a class="text-2xl no-underline" href={post.path}>
+					{post.metadata.title}
+				</a>
+				<p>
+					Published {post.metadata.date}
+				</p>
+			</div>
+		</li>
 	{/each}
 </ul>
 
