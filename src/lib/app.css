@@ -17,6 +17,10 @@ body {
 	@apply list-disc my-1 pl-10;
 }
 
+.post li {
+	@apply list-decimal my-1 pl-2;
+}
+
 .post code {
 	@apply bg-gray-100 p-[0.1em] rounded text-red-500;
 }
