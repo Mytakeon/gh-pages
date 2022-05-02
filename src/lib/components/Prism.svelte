@@ -1,17 +1,15 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import prism from 'prismjs';
-	// Would need to import this dynamically
+
+	// TBD: import dynamically
 	// see https://svelte.dev/repl/3fef33867c47431b8f4edc99275640e8?version=3.12.1
 	import 'prismjs/components/prism-json';
 	import 'prismjs/components/prism-typescript';
+
 	export let link: string;
 	const fileName = link.split('/').pop();
 	let language = link.split('.').pop();
-	// from: https://raw.githubusercontent.com/Mytakeon/vite-svelte-tailwind/main/src/main.ts
-	// to: https://github.com/Mytakeon/vite-svelte-tailwind/blob/main/src/main.ts
-	// get the github url from the github link
-	// const githubUrl = link.replace(/^https:\/\/raw.githubusercontent.com/, 'https://github.com');
 	let source: string;
 	let formattedCode: string | null;
 
@@ -33,15 +31,25 @@
 			formattedCode = source;
 		}
 	}
+
+	function getBlobLink(rawLink: string) {
+		// e.g. from: https://raw.githubusercontent.com/Mytakeon/vite-svelte-tailwind/main/src/main.ts
+		// to: https://github.com/Mytakeon/vite-svelte-tailwind/blob/main/src/main.ts
+		const githubUrlParts = rawLink.split('/');
+		githubUrlParts[2] = 'github.com';
+		githubUrlParts.splice(5, 0, 'blob');
+		return githubUrlParts.join('/');
+	}
 </script>
 
 <div class="bg-slate-200 rounded-md text-right">
 	{#if formattedCode}
-		<pre class="language-{language} rounded-t-md" command-line data-output="2-17"><code class="language-{language}"
+		<pre class="language-{language} rounded-t-md" command-line data-output="2-17"><code
+				class="language-{language}"
 				>{#if language === 'none'}{formattedCode}{:else}{@html formattedCode}{/if}</code
 			></pre>
 	{:else}
 		<pre command-line data-output="2-17"><code class="language-plain">Loading snippet...</code></pre>
 	{/if}
-	<a href={link} class="pr-2 no-underline hover:underline" title="View in Github">{fileName}</a>
+	<a href={getBlobLink(link)} class="pr-2 no-underline hover:underline" title="View in Github">{fileName}</a>
 </div>
