@@ -24,6 +24,12 @@
 			})
 		);
 
+		posts.sort((a, b) => {
+			const aDate = new Date(a.metadata.date);
+			const bDate = new Date(b.metadata.date);
+			return bDate.getTime() - aDate.getTime();
+		});
+
 		return { props: { posts, tag } };
 	};
 </script>
@@ -53,6 +59,10 @@
 		currentTagName = toTag ?? undefined;
 	});
 </script>
+
+<svelte:head>
+	<title>{tag ? `Mytakeon - ${tag}` : 'Mytakeon'}</title>
+</svelte:head>
 
 <h1 class="pb-1">Blog</h1>
 <div class="py-3">

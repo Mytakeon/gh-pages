@@ -1,5 +1,5 @@
 ---
-title: Setting up Vite, Svelte and Tailwind
+title: Setting up a Svelte project with Vite and Tailwind
 date: '2022-05-05'
 tags:
   - 'svelte'
