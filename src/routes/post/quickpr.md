@@ -1,10 +1,25 @@
 ---
-title: 'Quick PR helper for Azure DevOps'
+title: 'An NPM package to quickly create PRs'
 date: '2022-03-17'
 tags:
   - 'powershell'
   - 'git'
 ---
+
+## Edit: published as an NPM package
+
+This article was originally titled "_Quick PR helper for Azure DevOps_" (see following section), but I was inspired by [a podcast episode](https://changelog.com/jsparty/189) to publish it as an NPM package: https://www.npmjs.com/package/quickgitpr.
+
+Not that NodeJS or JavaScript are particularly well suited for automation scripts - but NodeJS is cross-platform, and nowadays any developer has Node + NPM on their machine, I can't think of anything with a lower barrier of entry than to just running:
+
+`npm install -g quickgitpr`
+
+I am pretty happy with it, given the how simple it is, yet how many things it does for you (figure out the origin name, the default branch name, creates a new branch name, etc.).
+I am looking forward to showing it off to some people to see if they find it useful as well.
+
+---
+
+## Quick PR helper for Azure DevOps
 
 I often create small aliases or utilities to use Git in the CLI.
 I use the following (super simple) function to speed-up the process of opening a pull request in Azure DevOps (ADO):
