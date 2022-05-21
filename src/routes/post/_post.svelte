@@ -4,6 +4,7 @@
 	import { tagColors } from '$lib/stores';
 	import { page } from '$app/stores';
 	export let title;
+	export let description;
 	export let date;
 	export let tags;
 
@@ -20,30 +21,32 @@
 
 <svelte:head>
 	<title>{title}</title>
+	<meta name="description" content={description} />
+	<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
 	<meta property="og:title" content={title} />
 </svelte:head>
 
-<h1 class="text-3xl py-2">{title}</h1>
+<article class="post">
+	<h1 class="text-3xl pb-2">{title}</h1>
 
-<div class="flex justify-between items-center">
-	<span class="text-lg text-gray-500">
-		Written on {formatDate(date)} (<a
-			href={`https://github.com/Mytakeon/gh-pages/blob/master/src/routes/${$page.routeId}.md`}>source</a
-		>)
-	</span>
-	<span>
-		{#each tags as tag}
-			<a
-				href={`/?tag=${tag}`}
-				class="no-underline p-1 mx-1 rounded-md border-solid"
-				style:background-color={tagColors[tag]}
-			>
-				{'#' + tag}
-			</a>
-		{/each}
-	</span>
-</div>
+	<div class="flex justify-between items-center pb-4">
+		<span class="text-lg text-gray-500">
+			Written on {formatDate(date)} (<a
+				href={`https://github.com/Mytakeon/gh-pages/blob/master/src/routes/${$page.routeId}.md`}>source</a
+			>)
+		</span>
+		<span>
+			{#each tags as tag}
+				<a
+					href={`/?tag=${tag}`}
+					class="no-underline p-1 mx-1 rounded-md border-solid"
+					style:background-color={tagColors[tag]}
+				>
+					{'#' + tag}
+				</a>
+			{/each}
+		</span>
+	</div>
 
-<div class="py-5 post">
 	<slot />
-</div>
+</article>

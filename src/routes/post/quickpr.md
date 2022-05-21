@@ -1,6 +1,7 @@
 ---
 title: 'An NPM package to quickly create PRs'
 date: '2022-03-17'
+description: 'A PowerShell script to quickly go from local changes to opening a Pull Request (PR)'
 tags:
   - 'powershell'
   - 'git'

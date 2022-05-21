@@ -1,6 +1,7 @@
 ---
 title: Writing in public
 date: '2022-03-11'
+description: 'Ideas on writing as a tool for thought, in particular when writing content for others'
 tags:
   - 'thoughts'
 ---
@@ -12,7 +13,7 @@ I decided to start writing in this blog, not really to share insights or program
 
 I know that writing will keep me little more honest: if an idea sounds good in my head, chances are, it's really rubbish. If I feel like I am understanding something, chances are, my understanding is limited; I just didn't realize it yet:
 
-<img class="py-3" alt="the stages of an idea" src="/idea-stages.svg"/>
+<img class="py-3" alt="The stages of an idea" src="/idea-stages.svg"/>
 
 _Writing this - currently at the 3rd colum_
 

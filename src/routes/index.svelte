@@ -3,6 +3,7 @@
 
 	interface PostMetadata {
 		title: string;
+		description: string;
 		tags: string[];
 		date: string;
 	}
@@ -68,6 +69,7 @@
 
 <svelte:head>
 	<title>{tag ? `Mytakeon - ${tag}` : 'Mytakeon'}</title>
+	<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
 </svelte:head>
 
 <h1>Blog</h1>

@@ -1,6 +1,7 @@
 ---
 title: Setting up a Svelte project with Vite and Tailwind
 date: '2022-05-02'
+description: 'Steps required to add Tailwind to a Svelte project created with Vite'
 tags:
   - 'svelte'
   - 'tailwind'

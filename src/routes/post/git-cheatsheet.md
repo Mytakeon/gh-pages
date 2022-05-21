@@ -1,6 +1,7 @@
 ---
 title: Git cheat sheet
 date: '2022-04-21'
+description: 'Succinct list of every day git use-cases and their git commands'
 tags:
   - 'git'
 ---
@@ -48,11 +49,10 @@ Over the years, I've curated a list of Git commands I often needed to look up, f
 - Do a shallow clone (only last commit of the main branch): `git clone --depth 1`
 - Init for servers: `git init --bare` (initializes only the `.git` folder, without a working tree)
 - Create a new working tree: `git worktree add <path> <branch>`
-- Set the current branch to be branch A: `git reset --hard A`
+- Set the current branch to be branch A: `git reset --hard A`. Other use case: dismiss any local difference and reset your branch to the origin's branch: `git reset --hard origin/branch_name`
 - Remove all ignored files from repository: `git clean -ffdx` (can be useful to get a "clean" state on your repository by removing everything not tracked by git: build, dependencies, temporary files, etc.)
 - Rename a file: `git mv old_filename new_filename` - in case changes are seen as the old file being deleted and a new one being added.
 - Remove all local changes: `git checkout .`
 - View all the changes that haven't been pushed to master yet: `git log origin/master..HEAD `
-- Reset local branch to its remote branch: `git reset --hard origin/branch_name`
 - Remove a file you accidentally tracked, after adding it to .gitignore: `git rm --cached file1.txt`
 - Use a new login: `git config credential.remote_name.username YourUserName`
