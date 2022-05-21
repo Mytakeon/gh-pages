@@ -1,9 +1,21 @@
 <script>
+	// @ts-nocheck (TS is not supported by mdsvex)
+
 	import { tagColors } from '$lib/stores';
 	import { page } from '$app/stores';
 	export let title;
 	export let date;
 	export let tags;
+
+	// e.g. April 21, 2022
+	const formatDate = (date) => {
+		const dateObj = new Date(date);
+		return dateObj.toLocaleString('en-US', {
+			month: 'long',
+			day: '2-digit',
+			year: 'numeric'
+		});
+	};
 </script>
 
 <svelte:head>
@@ -13,9 +25,9 @@
 
 <h1 class="text-3xl py-2">{title}</h1>
 
-<div class="flex justify-between text-center">
-	<span class="text-lg">
-		Published: {date} (<a
+<div class="flex justify-between items-center">
+	<span class="text-lg text-gray-500">
+		Written on {formatDate(date)} (<a
 			href={`https://github.com/Mytakeon/gh-pages/blob/master/src/routes/${$page.routeId}.md`}>source</a
 		>)
 	</span>

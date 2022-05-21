@@ -5,10 +5,7 @@
 </script>
 
 <svelte:head>
-	<script
-		data-goatcounter="https://mytakeon.goatcounter.com/count"
-		async
-		src="//gc.zgo.at/count.js"></script>
+	<script data-goatcounter="https://mytakeon.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </svelte:head>
 
 <Header />

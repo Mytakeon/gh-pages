@@ -58,14 +58,20 @@
 		if (fromTag && toTag === undefined) return;
 		currentTagName = toTag ?? undefined;
 	});
+
+	// e.g. April 21
+	export const formatDate = (date: string) => {
+		const dateObj = new Date(date);
+		return dateObj.toLocaleString('en-US', { month: 'long', day: '2-digit' });
+	};
 </script>
 
 <svelte:head>
 	<title>{tag ? `Mytakeon - ${tag}` : 'Mytakeon'}</title>
 </svelte:head>
 
-<h1 class="pb-1">Blog</h1>
-<div class="py-3">
+<h1>Blog</h1>
+<div class="pb-5">
 	Browse by tags:
 	<div class="inline-block">
 		{#each tagsIterable as [tag, color], index}
@@ -88,13 +94,13 @@
 
 <ul>
 	{#each filteredPosts as post}
-		<li class="py-2">
-			<div>
-				<a class="text-2xl no-underline" href={post.path}>
+		<li class="py-1 ">
+			<div class="flex justify-between items-center">
+				<a class="text-lg no-underline hover:underline" href={post.path}>
 					{post.metadata.title}
 				</a>
-				<p>
-					Published {post.metadata.date}
+				<p class="font-mono text-gray-500">
+					{formatDate(post.metadata.date)}
 				</p>
 			</div>
 		</li>
