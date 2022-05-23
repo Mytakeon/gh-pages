@@ -96,15 +96,17 @@
 
 <ul>
 	{#each filteredPosts as post}
-		<li class="py-1 ">
-			<div class="flex justify-between items-center">
-				<a class="text-lg no-underline hover:underline" href={post.path}>
-					{post.metadata.title}
-				</a>
-				<p class="font-mono text-gray-500">
-					{formatDate(post.metadata.date)}
-				</p>
-			</div>
+		<li class="py-1">
+			<a class="no-underline" href={post.path}>
+				<div class="flex justify-between items-center px-2 py-1 rounded-md hover:bg-slate-100">
+					<p class="text-lg">
+						{post.metadata.title}
+					</p>
+					<p class="font-mono text-gray-500">
+						{formatDate(post.metadata.date)}
+					</p>
+				</div>
+			</a>
 		</li>
 	{/each}
 </ul>
