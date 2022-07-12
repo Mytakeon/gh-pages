@@ -3,6 +3,8 @@
 
 	import { tagColors } from '$lib/stores';
 	import { page } from '$app/stores';
+	import GoBack from '$lib/components/goBack.svelte';
+
 	export let title;
 	export let description;
 	export let date;
@@ -51,3 +53,4 @@
 
 	<slot />
 </article>
+<GoBack />
