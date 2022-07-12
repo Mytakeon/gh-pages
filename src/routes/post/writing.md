@@ -37,7 +37,7 @@ This post for example, might not be much - it might be flawed, but it is my own 
 # Producing something
 
 <div class="py-2">
-  <div class="px-4 pb-1 pt-0.5 italic border-l-4 bg-neutral-100 text-neutral-600 border-neutral-500 ">
+  <div class="px-4 pb-1 pt-0.5 italic border-l-4 bg-neutral-100 text-neutral-600 border-neutral-500 rounded-lg">
   <p>most people “learn in private”, and lurk. They consume content without creating any themselves.</p>
   <a class="text-sm" href="https://www.swyx.io/learn-in-public/">swyx.io</a>
   </div>

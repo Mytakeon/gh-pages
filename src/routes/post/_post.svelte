@@ -47,6 +47,7 @@
 			{/each}
 		</span>
 	</div>
+	<div class="my-2 h-[0.15rem] w-[100vw] bg-slate-500 sm:mx-0 sm:w-full rounded-lg" />
 
 	<slot />
 </article>

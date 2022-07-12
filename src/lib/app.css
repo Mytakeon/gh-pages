@@ -41,3 +41,13 @@ main {
 	margin: 2rem auto;
 	max-width: 40rem;
 }
+
+/* scrollbar */
+::-webkit-scrollbar {
+	width: 0.8rem;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: rgb(144, 144, 144);
+	border-radius: 0.5rem;
+}
