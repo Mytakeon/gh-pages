@@ -2,7 +2,7 @@ lockfileVersion: 5.3
 
 specifiers:
   '@sveltejs/adapter-auto': ^1.0.0-next.57
-  '@sveltejs/kit': 1.0.0-next.347
+  '@sveltejs/kit': ^1.0.0-next.370
   '@types/prismjs': ^1.26.0
   autoprefixer: ^10.4.7
   eslint: ^8.19.0
@@ -18,10 +18,11 @@ specifiers:
   svelte-preprocess: ^4.10.7
   tailwindcss: ^3.1.6
   typescript: ^4.7.4
+  vite: ^2.9.14
 
 devDependencies:
   '@sveltejs/adapter-auto': 1.0.0-next.57
-  '@sveltejs/kit': 1.0.0-next.347_svelte@3.49.0
+  '@sveltejs/kit': 1.0.0-next.370_svelte@3.49.0+vite@2.9.14
   '@types/prismjs': 1.26.0
   autoprefixer: 10.4.7_postcss@8.4.14
   eslint: 8.19.0
@@ -37,6 +38,7 @@ devDependencies:
   svelte-preprocess: 4.10.7_099b3ba107a40e6eb2c007da2ca6cf30
   tailwindcss: 3.1.6
   typescript: 4.7.4
+  vite: 2.9.14
 
 packages:
 
@@ -181,12 +183,13 @@ packages:
       - supports-color
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.347_svelte@3.49.0:
-    resolution: {integrity: sha512-kxan2F8g9nM/4QzLINsPiZdLZLx6X2Tjg+Ft8KR2QPhHKCEQ3jlosnGTzmznt572PTg89UhiUhQWKK4IDk2nSA==}
-    engines: {node: '>=16.7'}
+  /@sveltejs/kit/1.0.0-next.370_svelte@3.49.0+vite@2.9.14:
+    resolution: {integrity: sha512-HAQtw8IjXs9yOPWKpuwpGgDT8x6Dgqm14NmFx0emF52vo5wn3tQzu0cBx299Po2RdRgfSDFKrNqVSlL1hVTHcA==}
+    engines: {node: '>=16.9'}
     hasBin: true
     peerDependencies:
       svelte: ^3.44.0
+      vite: ^2.9.10
     dependencies:
       '@sveltejs/vite-plugin-svelte': 1.0.0-next.49_svelte@3.49.0+vite@2.9.14
       chokidar: 3.5.3
@@ -195,9 +198,6 @@ packages:
       vite: 2.9.14
     transitivePeerDependencies:
       - diff-match-patch
-      - less
-      - sass
-      - stylus
       - supports-color
     dev: true
 
