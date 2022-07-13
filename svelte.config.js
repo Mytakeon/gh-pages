@@ -6,7 +6,12 @@ import { mdsvex } from 'mdsvex';
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	kit: {
-		adapter: adapter()
+		adapter: adapter(),
+		vite: {
+			define: {
+				'import.meta.env.VERCEL_ANALYTICS_ID': JSON.stringify(process.env.VERCEL_ANALYTICS_ID)
+			}
+		},
 	},
 	// Allows markdown files to be imported as if they were svelte components
 	extensions: ['.svelte', '.md'],
