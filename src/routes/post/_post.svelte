@@ -1,7 +1,6 @@
 <script>
 	// @ts-nocheck (TS is not supported by mdsvex)
 
-	import { tagColors } from '$lib/stores';
 	import { page } from '$app/stores';
 	import GoBack from '$lib/components/goBack.svelte';
 
@@ -31,25 +30,24 @@
 <article class="post">
 	<h1 class="text-3xl pb-2">{title}</h1>
 
-	<div class="flex justify-between items-center pb-4">
-		<span class="text-lg text-gray-500">
+	<div class="flex justify-between items-center">
+		<span class="text-lg dark:text-gray-300">
 			Written on {formatDate(date)} (<a
 				href={`https://github.com/Mytakeon/gh-pages/blob/master/src/routes/${$page.routeId}.md`}>source</a
 			>)
 		</span>
-		<span>
+		<span class="flex gap-1">
 			{#each tags as tag}
 				<a
 					href={`/?tag=${tag}`}
-					class="no-underline p-1 mx-1 rounded-md border-solid"
-					style:background-color={tagColors[tag]}
+					class={`${tag} p-1 rounded-md border-solid cursor-pointer no-underline text-gray-800 dark:text-gray-200`}
 				>
-					{'#' + tag}
+					{tag}
 				</a>
 			{/each}
 		</span>
 	</div>
-	<div class="my-2 h-[0.15rem] w-[100vw] bg-slate-500 sm:mx-0 sm:w-full rounded-lg" />
+	<div class="my-4 h-[0.15rem] w-[100vw] bg-slate-500 sm:mx-0 sm:w-full rounded-lg" />
 
 	<slot />
 </article>

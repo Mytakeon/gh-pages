@@ -36,7 +36,7 @@
 </script>
 
 <script lang="ts">
-	import { tagColors } from '$lib/stores';
+	import { TAGS } from '$lib/config';
 	import { beforeNavigate } from '$app/navigation';
 
 	export let posts: Post[];
@@ -48,8 +48,6 @@
 	$: filteredPosts = posts.filter((post) =>
 		currentTagName ? post.metadata.tags.includes(currentTagName) : true
 	);
-
-	const tagsIterable = Object.entries(tagColors);
 
 	// Hook into CSR to update `currentTagName` depending on the <a/> navigation
 	beforeNavigate(({ to, from }) => {
@@ -76,19 +74,16 @@
 <div class="pb-5">
 	Browse by tags:
 	<div class="inline-block">
-		{#each tagsIterable as [tag, color], index}
+		{#each TAGS as tag, index}
 			<a
 				href={`/?tag=${tag}`}
-				class="p-1 rounded-md border-solid cursor-pointer no-underline"
+				class={`${tag} p-1 rounded-md border-solid cursor-pointer no-underline text-gray-800 dark:text-gray-200`}
 				class:selected={currentTagName === tag}
-				style:background-color={color}
 			>
-				{'#' + tag}
+				{tag}
 			</a>
-			{#if index === tagsIterable.length - 1}
-				{#if currentTagName}
-					<a href={`/`} class="cursor-pointer no-underline">X </a>
-				{/if}
+			{#if currentTagName && index === TAGS.length - 1}
+				<a href={`/`} class="cursor-pointer no-underline">X </a>
 			{/if}
 		{/each}
 	</div>
@@ -98,11 +93,13 @@
 	{#each filteredPosts as post}
 		<li class="py-1">
 			<a class="no-underline" href={post.path}>
-				<div class="flex justify-between items-center px-2 py-1 rounded-md hover:bg-slate-100">
+				<div
+					class="flex justify-between items-center px-2 py-1 rounded-md hover:bg-slate-100 dark:hover:bg-slate-700"
+				>
 					<p class="text-lg">
 						{post.metadata.title}
 					</p>
-					<p class="font-mono text-gray-500">
+					<p class="font-mono text-gray-500 dark:text-gray-300">
 						{formatDate(post.metadata.date)}
 					</p>
 				</div>

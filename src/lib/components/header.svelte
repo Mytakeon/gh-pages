@@ -1,8 +1,9 @@
 <script>
+	import DarkModeButton from './DarkModeButton.svelte';
 	import { page } from '$app/stores';
 </script>
 
-<header>
+<header class="flex items-center justify-between w-3/6 m-auto">
 	<nav class="p-4">
 		<ul class="flex gap-3">
 			<li>
@@ -16,6 +17,7 @@
 			</li>
 		</ul>
 	</nav>
+	<DarkModeButton />
 </header>
 
 <style>

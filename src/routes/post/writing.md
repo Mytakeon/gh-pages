@@ -21,7 +21,7 @@ Another good way to realize how fallible your understanding or idea is, is to tr
 
 Writing is not just about memorizing and formulating a thought, it can also help you take a line of reasoning further, since you your chain of thoughts is directly under your eyes:
 
-<img class="py-3 " alt="Thinking in your head vs. on paper" src="/chain-of-thoughts.svg"/>
+<img class="py-3 dark:bg-gray-900" alt="Thinking in your head vs. on paper" src="/chain-of-thoughts.svg"/>
 
 This is obviously an over-simplification of how we come to understand concepts or have new ideas - but doing so _does_ require joining thoughts together, which can't happen if the thought is not available in memory.
 

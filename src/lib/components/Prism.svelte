@@ -42,14 +42,21 @@
 	}
 </script>
 
-<div class="bg-slate-200 rounded-md text-right">
+<div>
 	{#if formattedCode}
-		<pre class="language-{language} rounded-t-md" command-line data-output="2-17"><code
+		<pre class="language-{language} rounded-t-md gist" command-line data-output="2-17"><code
 				class="language-{language}"
 				>{#if language === 'none'}{formattedCode}{:else}{@html formattedCode}{/if}</code
 			></pre>
 	{:else}
 		<pre command-line data-output="2-17"><code class="language-plain">Loading snippet...</code></pre>
 	{/if}
-	<a href={getBlobLink(link)} class="pr-2 no-underline hover:underline" title="View in Github">{fileName}</a>
+	<div class="bg-slate-200 dark:bg-slate-600 rounded-b-md py-1 text-right">
+		<a
+			href={getBlobLink(link)}
+			target="_blank"
+			class="pr-2 no-underline hover:underline"
+			title="View in Github"><code>{fileName}</code></a
+		>
+	</div>
 </div>

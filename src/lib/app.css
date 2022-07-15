@@ -21,15 +21,35 @@ body {
 	@apply list-decimal my-1 pl-2;
 }
 
-.post code {
+/* .post code {
 	@apply bg-gray-100 p-[0.1em] rounded text-red-500;
-}
+} */
 
 h1 {
 	@apply text-3xl  my-2;
 }
 h2 {
 	@apply text-2xl  my-3;
+}
+
+.git {
+	@apply bg-red-100 dark:bg-red-900;
+}
+
+.powershell {
+	@apply bg-blue-100 dark:bg-blue-900;
+}
+
+.thoughts {
+	@apply bg-green-100 dark:bg-green-900;
+}
+
+.svelte {
+	@apply bg-orange-100 dark:bg-orange-900;
+}
+
+.tailwind {
+	@apply bg-purple-100 dark:bg-purple-900;
 }
 
 a {
@@ -42,9 +62,16 @@ main {
 	max-width: 40rem;
 }
 
-/* scrollbar */
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/::-webkit-scrollbar */
 ::-webkit-scrollbar {
-	width: 0.8rem;
+	width: 0.7rem;
+}
+
+/* All pre tags that don't contains the class "gist */
+
+pre:not(.gist) {
+	overflow-x: initial;
+	border-radius: 0.5rem;
 }
 
 ::-webkit-scrollbar-thumb {
