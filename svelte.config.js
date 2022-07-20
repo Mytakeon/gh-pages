@@ -6,7 +6,7 @@ import { mdsvex } from 'mdsvex';
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	kit: {
-		adapter: adapter()
+		adapter: adapter(),
 	},
 	// Allows markdown files to be imported as if they were svelte components
 	extensions: ['.svelte', '.md'],
