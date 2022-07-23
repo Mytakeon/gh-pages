@@ -33,6 +33,7 @@
 	<div class="flex justify-between items-center">
 		<span class="text-lg dark:text-gray-300">
 			Written on {formatDate(date)} (<a
+				target="_blank"
 				href={`https://github.com/Mytakeon/gh-pages/blob/master/src/routes/${$page.routeId}.md`}>source</a
 			>)
 		</span>
@@ -40,7 +41,7 @@
 			{#each tags as tag}
 				<a
 					href={`/?tag=${tag}`}
-					class={`${tag} p-1 rounded-md border-solid cursor-pointer no-underline text-gray-800 dark:text-gray-200`}
+					class={`${tag} px-1 rounded-md border-solid cursor-pointer no-underline text-gray-800 dark:text-gray-200`}
 				>
 					{tag}
 				</a>

@@ -71,42 +71,36 @@
 </svelte:head>
 
 <h1>Blog</h1>
-<div class="pb-5">
-	Browse by tags:
-	<div class="inline-block">
-		{#each TAGS as tag, index}
+<div class="gap-1 md:flex">
+	<p>Browse by tags:</p>
+	<div class="flex gap-1 pb-2">
+		{#each TAGS as tag}
 			<a
 				href={`/?tag=${tag}`}
-				class={`${tag} p-1 rounded-md border-solid cursor-pointer no-underline text-gray-800 dark:text-gray-200`}
+				class={`${tag} px-1 rounded-md border-solid cursor-pointer no-underline text-gray-800 dark:text-gray-200`}
 				class:selected={currentTagName === tag}
 			>
 				{tag}
 			</a>
-			{#if currentTagName && index === TAGS.length - 1}
-				<a href={`/`} class="cursor-pointer no-underline">X </a>
-			{/if}
 		{/each}
+		{#if currentTagName}
+			<a href={`/`} class="cursor-pointer no-underline pl-2">X</a>
+		{/if}
 	</div>
 </div>
 
-<ul>
-	{#each filteredPosts as post}
-		<li class="py-1">
-			<a class="no-underline" href={post.path}>
-				<div
-					class="flex justify-between items-center px-2 py-1 rounded-md hover:bg-slate-100 dark:hover:bg-slate-700"
-				>
-					<p class="text-lg">
-						{post.metadata.title}
-					</p>
-					<p class="font-mono text-gray-500 dark:text-gray-300">
-						{formatDate(post.metadata.date)}
-					</p>
-				</div>
-			</a>
-		</li>
-	{/each}
-</ul>
+{#each filteredPosts as post}
+	<a class="no-underline" href={post.path}>
+		<div
+			class="md:flex px-2 py-1 justify-between items-center rounded-md hover:bg-slate-100 dark:hover:bg-slate-700"
+		>
+			<p class="md:text-lg">{post.metadata.title}</p>
+			<p class="text-sm md:text-base font-mono text-gray-500 dark:text-gray-300">
+				{formatDate(post.metadata.date)}
+			</p>
+		</div>
+	</a>
+{/each}
 
 <style>
 	a.selected {
