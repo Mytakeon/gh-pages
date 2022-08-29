@@ -1,12 +1,14 @@
 <script context="module" lang="ts">
-	import type { Load } from '@sveltejs/kit';
-	import GoBack from '$lib/components/goBack.svelte';
+	throw new Error("@migration task: Replace error load function (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3293209)");
 
-	export const load: Load = ({ url, error, status }) => {
-		return {
-			props: { error, status, url }
-		};
-	};
+	// import type { Load } from '@sveltejs/kit';
+	// import GoBack from '$lib/components/goBack.svelte';
+
+	// export const load: Load = ({ url, error, status }) => {
+	// 	return {
+	// 		props: { error, status, url }
+	// 	};
+	// };
 </script>
 
 <script lang="ts">

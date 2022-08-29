@@ -1,41 +1,8 @@
-<script context="module" lang="ts">
-	import type { Load } from '@sveltejs/kit';
 
-	interface PostMetadata {
-		title: string;
-		description: string;
-		tags: string[];
-		date: string;
-	}
-	interface Post {
-		metadata: PostMetadata;
-		path: string;
-	}
-
-	export const load: Load = async ({ url }) => {
-		const tag = url.searchParams.get('tag');
-		const allPostFiles = import.meta.glob('./post/*.md');
-		const iterablePostFiles = Object.entries(allPostFiles);
-
-		const posts = await Promise.all(
-			iterablePostFiles.map(async ([path, resolver]) => {
-				const { metadata } = await resolver();
-
-				return { metadata, path: path.slice(2, -3) };
-			})
-		);
-
-		posts.sort((a, b) => {
-			const aDate = new Date(a.metadata.date);
-			const bDate = new Date(b.metadata.date);
-			return bDate.getTime() - aDate.getTime();
-		});
-
-		return { props: { posts, tag } };
-	};
-</script>
 
 <script lang="ts">
+	throw new Error("@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)");
+
 	import { TAGS } from '$lib/config';
 	import { beforeNavigate } from '$app/navigation';
 
