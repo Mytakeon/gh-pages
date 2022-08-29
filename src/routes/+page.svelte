@@ -1,19 +1,14 @@
-
-
 <script lang="ts">
-	throw new Error("@migration task: Add data prop (https://github.com/sveltejs/kit/discussions/5774#discussioncomment-3292707)");
-
+	import { page } from '$app/stores';
 	import { TAGS } from '$lib/config';
 	import { beforeNavigate } from '$app/navigation';
+	import type { PageData } from './$types';
 
-	export let posts: Post[];
-	export let tag: string | null;
+	export let data: PageData;
+	let currentTag = $page.url.searchParams.get('tag');
 
-	let currentTagName: string | undefined;
-	if (tag) currentTagName = tag;
-
-	$: filteredPosts = posts.filter((post) =>
-		currentTagName ? post.metadata.tags.includes(currentTagName) : true
+	$: filteredPosts = data.posts.filter((post) =>
+		currentTag ? post.metadata.tags.includes(currentTag) : true
 	);
 
 	// Hook into CSR to update `currentTagName` depending on the <a/> navigation
@@ -22,18 +17,17 @@
 		const toTag = to?.searchParams.get('tag');
 		// on "index?tag=a" page refresh, toTag is null, ignore it
 		if (fromTag && toTag === undefined) return;
-		currentTagName = toTag ?? undefined;
+		currentTag = toTag ?? null;
 	});
 
-	// e.g. April 21
-	export const formatDate = (date: string) => {
+	const formatDate = (date: string) => {
 		const dateObj = new Date(date);
 		return dateObj.toLocaleString('en-US', { month: 'long', day: '2-digit' });
 	};
 </script>
 
 <svelte:head>
-	<title>{tag ? `Mytakeon - ${tag}` : 'Mytakeon'}</title>
+	<title>{currentTag ? `Mytakeon - ${currentTag}` : 'Mytakeon'}</title>
 	<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
 </svelte:head>
 
@@ -45,12 +39,12 @@
 			<a
 				href={`/?tag=${tag}`}
 				class={`${tag} px-1 rounded-md border-solid cursor-pointer no-underline text-gray-800 dark:text-gray-200`}
-				class:selected={currentTagName === tag}
+				class:selected={tag === currentTag}
 			>
 				{tag}
 			</a>
 		{/each}
-		{#if currentTagName}
+		{#if currentTag}
 			<a aria-label="View all tags" href={`/`} class="cursor-pointer no-underline pl-2">
 				<svg
 					viewBox="0 0 24 24"

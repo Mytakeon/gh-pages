@@ -1,27 +1,22 @@
+import type { PageLoad } from './$types';
 
-import type { PageLoad } from '@sveltejs/kit';
-
+// Matches the metadata present at the start of each .md post
 interface PostMetadata {
 	title: string;
 	description: string;
 	tags: string[];
 	date: string;
 }
-interface Post {
-	metadata: PostMetadata;
-	path: string;
-}
 
-export const load: PageLoad = async ({ url }) => {
-	const tag = url.searchParams.get('tag');
-	const allPostFiles = import.meta.glob('./post/*.md');
-	const iterablePostFiles = Object.entries(allPostFiles);
+export const load: PageLoad = async () => {
+	const allPostFiles = import.meta.glob('./post/**/*.md');
 
 	const posts = await Promise.all(
-		iterablePostFiles.map(async ([path, resolver]) => {
-			const { metadata } = await resolver();
+		Object.entries(allPostFiles).map(async ([path, resolver]) => {
+			const { metadata } = (await resolver()) as { metadata: PostMetadata };
 
-			return { metadata, path: path.slice(2, -3) };
+			// Remove "./" at the start of the path then "+page.md" at the end to obtain the route
+			return { metadata, path: path.slice(2, -9) };
 		})
 	);
 
@@ -31,5 +26,5 @@ export const load: PageLoad = async ({ url }) => {
 		return bDate.getTime() - aDate.getTime();
 	});
 
-	return { posts, tag };
+	return { posts };
 };
