@@ -34,7 +34,8 @@
 		<span class="text-lg dark:text-gray-300">
 			Written on {formatDate(date)} (<a
 				target="_blank"
-				href={`https://github.com/Mytakeon/gh-pages/blob/master/src/routes/${$page.routeId}.md`}>source</a
+				href={`https://github.com/Mytakeon/gh-pages/blob/master/src/routes/${$page.routeId}/+page.md`}
+				>source</a
 			>)
 		</span>
 		<span class="flex gap-1">
