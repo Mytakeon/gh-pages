@@ -4,4 +4,4 @@ My name is Arthur. I work as a Software Engineer in Dublin. Feel free to reach o
 
 <br/>
 
-This website is built with [SvelteKit](https://kit.svelte.dev/) and deployed with [Vercel](https://vercel.com/). The code hosted on publicly [Github](https://github.com/Mytakeon/gh-pages).
+This website is built with [SvelteKit](https://kit.svelte.dev/) and deployed with [Vercel](https://vercel.com/). The code hosted publicly on [Github](https://github.com/Mytakeon/gh-pages).
