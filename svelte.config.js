@@ -8,6 +8,11 @@ const config = {
 	kit: {
 		adapter: adapter()
 	},
+	vitePlugin: {
+		experimental: {
+			inspector: process.env.VERCEL !== '1'
+		},
+	},
 	// Allows markdown files to be imported as if they were svelte components
 	extensions: ['.svelte', '.md'],
 	preprocess: [
