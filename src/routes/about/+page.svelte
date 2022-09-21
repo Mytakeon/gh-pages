@@ -11,6 +11,7 @@
 	<a href="mailto:arthur.alglave(at)gmail.com">email</a> or find me on
 	<a href="https://www.linkedin.com/in/arthur-alglave/">LinkedIn</a>.
 </p>
+<br>
 
 <p>
 	This website is built with <a href="https://kit.svelte.dev/">SvelteKit</a> and deployed with

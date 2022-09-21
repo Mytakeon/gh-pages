@@ -1,4 +1,4 @@
-import type { PageServerLoad } from '.svelte-kit/types/src/routes/$types';
+import type { PageLoad } from '.svelte-kit/types/src/routes/$types';
 
 // Matches the metadata present at the start of each .md post
 interface PostMetadata {
@@ -8,7 +8,7 @@ interface PostMetadata {
 	date: string;
 }
 
-export const load: PageServerLoad = async () => {
+export const load: PageLoad = async () => {
 	const allPostFiles = import.meta.glob('./post/**/*.md');
 
 	const posts = await Promise.all(
