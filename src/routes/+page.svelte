@@ -62,18 +62,20 @@
 	</div>
 </div>
 
-{#each filteredPosts as post}
-	<a class="no-underline" href={post.path}>
-		<div
-			class="md:flex px-2 py-1 justify-between items-center rounded-md hover:bg-slate-100 dark:hover:bg-slate-700"
-		>
-			<p class="md:text-lg">{post.metadata.title}</p>
-			<p class="text-sm md:text-base font-mono text-gray-500 dark:text-gray-300">
-				{formatDate(post.metadata.date)}
-			</p>
-		</div>
-	</a>
-{/each}
+<div data-sveltekit-prefetch>
+	{#each filteredPosts as post}
+		<a class="no-underline" href={post.path}>
+			<div
+				class="md:flex px-2 py-1 justify-between items-center rounded-md hover:bg-slate-100 dark:hover:bg-slate-700"
+			>
+				<p class="md:text-lg">{post.metadata.title}</p>
+				<p class="text-sm md:text-base font-mono text-gray-500 dark:text-gray-300">
+					{formatDate(post.metadata.date)}
+				</p>
+			</div>
+		</a>
+	{/each}
+</div>
 
 <style>
 	a.selected {
