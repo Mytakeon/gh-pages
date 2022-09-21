@@ -3,6 +3,7 @@
 
 	import { page } from '$app/stores';
 	import GoBack from '$lib/components/goBack.svelte';
+	import { fly } from 'svelte/transition';
 
 	export let title;
 	export let description;
@@ -27,7 +28,7 @@
 	<meta property="og:title" content={title} />
 </svelte:head>
 
-<article class="post">
+<article class="post" in:fly={{ x: 50, duration: 300 }}>
 	<h1 class="text-3xl pb-2">{title}</h1>
 
 	<div class="flex justify-between items-center">

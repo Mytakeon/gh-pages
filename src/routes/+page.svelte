@@ -3,6 +3,7 @@
 	import { TAGS } from '$lib/config';
 	import { beforeNavigate } from '$app/navigation';
 	import type { PageData } from './$types';
+	import { fly } from 'svelte/transition';
 
 	export let data: PageData;
 	let currentTag = $page.url.searchParams.get('tag');
@@ -62,10 +63,12 @@
 	</div>
 </div>
 
+<!-- TBD: fly transition doesn't apply on first render: https://github.com/sveltejs/kit/issues/2759 -->
 <div data-sveltekit-prefetch>
-	{#each filteredPosts as post}
+	{#each filteredPosts as post, index}
 		<a class="no-underline" href={post.path}>
 			<div
+				in:fly={{ x: 50, duration: 200, delay: (index + 1) * 75 }}
 				class="md:flex px-2 py-1 justify-between items-center rounded-md hover:bg-slate-100 dark:hover:bg-slate-700"
 			>
 				<p class="md:text-lg">{post.metadata.title}</p>

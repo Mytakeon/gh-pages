@@ -12,7 +12,7 @@
 		"format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. ."
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "next",
+		"@sveltejs/adapter-vercel": "next",
 		"@sveltejs/kit": "next",
 		"@types/prismjs": "^1.26.0",
 		"autoprefixer": "^10.4.8",
