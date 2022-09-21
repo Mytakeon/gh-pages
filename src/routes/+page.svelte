@@ -13,8 +13,8 @@
 
 	// Hook into CSR to update `currentTagName` depending on the <a/> navigation
 	beforeNavigate(({ to, from }) => {
-		const fromTag = from?.searchParams.get('tag');
-		const toTag = to?.searchParams.get('tag');
+		const fromTag = from?.url.searchParams.get('tag');
+		const toTag = to?.url.searchParams.get('tag');
 		// on "index?tag=a" page refresh, toTag is null, ignore it
 		if (fromTag && toTag === undefined) return;
 		currentTag = toTag ?? null;

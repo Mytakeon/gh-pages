@@ -3,7 +3,7 @@
 	import { page } from '$app/stores';
 </script>
 
-<header class="flex items-center justify-between w-3/6 m-auto">
+<header class="flex items-center justify-between w-3/6 m-auto" data-sveltekit-prefetch>
 	<nav class="p-4">
 		<ul class="flex gap-3">
 			<li>
