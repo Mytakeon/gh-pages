@@ -8,6 +8,7 @@ tags:
 ---
 
 <script>
+ export const prerender = false;
  import Prism from "$lib/components/Prism.svelte"
  const templateRepoPath = "https://raw.githubusercontent.com/Mytakeon/vite-svelte-tailwind/main";
 </script>
