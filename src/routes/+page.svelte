@@ -4,6 +4,7 @@
 	import { beforeNavigate } from '$app/navigation';
 	import type { PageData } from './$types';
 	import { fly } from 'svelte/transition';
+	import { flip } from 'svelte/animate';
 
 	export let data: PageData;
 	let currentTag = $page.url.searchParams.get('tag');
@@ -46,7 +47,12 @@
 			</a>
 		{/each}
 		{#if currentTag}
-			<a aria-label="View all tags" href={`/`} class="cursor-pointer no-underline pl-2">
+			<a
+				in:fly={{ x: -20 }}
+				aria-label="View all tags"
+				href={`/`}
+				class="cursor-pointer no-underline rounded-lg ml-2 hover:bg-slate-100 dark:hover:bg-slate-700"
+			>
 				<svg
 					viewBox="0 0 24 24"
 					width="24"
@@ -65,18 +71,20 @@
 
 <!-- TBD: fly transition doesn't apply on first render: https://github.com/sveltejs/kit/issues/2759 -->
 <div data-sveltekit-prefetch>
-	{#each filteredPosts as post, index}
-		<a class="no-underline" href={post.path}>
-			<div
-				in:fly={{ x: 50, duration: 200, delay: (index + 1) * 75 }}
-				class="md:flex px-2 py-1 justify-between items-center rounded-md hover:bg-slate-100 dark:hover:bg-slate-700"
-			>
-				<p class="md:text-lg">{post.metadata.title}</p>
-				<p class="text-sm md:text-base font-mono text-gray-500 dark:text-gray-300">
-					{formatDate(post.metadata.date)}
-				</p>
-			</div>
-		</a>
+	{#each filteredPosts as post, index (post.path)}
+		<div animate:flip={{ duration: 200 }}>
+			<a class="no-underline" href={post.path}>
+				<div
+					in:fly={{ x: 50, duration: 200, delay: (index + 1) * 75 }}
+					class="md:flex px-2 py-1 justify-between items-center rounded-md hover:bg-slate-100 dark:hover:bg-slate-700"
+				>
+					<p class="md:text-lg">{post.metadata.title}</p>
+					<p class="text-sm md:text-base font-mono text-gray-500 dark:text-gray-300">
+						{formatDate(post.metadata.date)}
+					</p>
+				</div>
+			</a>
+		</div>
 	{/each}
 </div>
 
