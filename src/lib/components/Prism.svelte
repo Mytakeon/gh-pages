@@ -5,11 +5,12 @@
 	// TBD: import dynamically
 	// see https://svelte.dev/repl/3fef33867c47431b8f4edc99275640e8?version=3.12.1
 	import 'prismjs/components/prism-json.js';
+	import 'prismjs/components/prism-bash.js';
 	import 'prismjs/components/prism-typescript.js';
 
 	export let link: string;
-	const fileName = link.split('/').pop();
-	let language = link.split('.').pop();
+	const fileName = link.split('/').pop()!;
+	let language = fileName.includes('.') ? fileName.split('.').pop() : 'bash';
 	let source: string;
 	let formattedCode: string | null;
 	let lineCount = 0;
