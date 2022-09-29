@@ -1,1 +1,1 @@
-export const TAGS = ['git', 'powershell', 'thoughts', 'svelte', 'tailwind'];
+export const TAGS = ['git', 'python', 'powershell', 'thoughts', 'svelte', 'tailwind'];
