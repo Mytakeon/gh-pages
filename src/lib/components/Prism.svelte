@@ -53,8 +53,12 @@
 		class="bg-slate-100 border border-gray-300 dark:border-gray-500 dark:bg-slate-600 p-2 flex justify-between rounded-t-md align-middle"
 	>
 		<div>
-			<a href={getBlobLink(link)} target="_blank" class="no-underline hover:underline" title="View in Github"
-				><code>{fileName}</code></a
+			<a
+				href={getBlobLink(link)}
+				target="_blank"
+				rel="noreferrer"
+				class="no-underline hover:underline"
+				title="View in Github"><code>{fileName}</code></a
 			>
 			<span class="text-slate-400 mr-1 ml-1">|</span>
 			<code>{lineCount} lines</code>
@@ -78,12 +82,11 @@
 	</div>
 	<div>
 		{#if formattedCode}
-			<pre class="language-{language} rounded-b-md gist" command-line data-output="2-17"><code
-					class="language-{language}"
+			<pre class="language-{language} rounded-b-md gist" data-output="2-17"><code class="language-{language}"
 					>{#if language === 'none'}{formattedCode}{:else}{@html formattedCode}{/if}</code
 				></pre>
 		{:else}
-			<pre command-line data-output="2-17"><code class="language-plain">Loading snippet...</code></pre>
+			<pre data-output="2-17"><code class="language-plain">Loading snippet...</code></pre>
 		{/if}
 	</div>
 </div>

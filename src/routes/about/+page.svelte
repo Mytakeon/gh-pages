@@ -20,7 +20,7 @@
 		<a href="https://github.com/Mytakeon/gh-pages">Github</a>
 		(you are looking at version
 		<code
-			><a target="_blank" href="https://github.com/Mytakeon/gh-pages/commit/{data.sha}"
+			><a target="_blank" rel="noreferrer" href="https://github.com/Mytakeon/gh-pages/commit/{data.sha}"
 				>{data.sha.slice(0, 6)}</a
 			></code
 		>).
