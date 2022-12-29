@@ -51,7 +51,7 @@
 
 <div>
 	<div
-		class="bg-slate-100 border border-gray-300 dark:border-gray-500 dark:bg-slate-600 p-2 flex justify-between rounded-t-md align-middle"
+		class="bg-slate-100 border border-gray-300 dark:border-gray-500 dark:bg-slate-600 p-2 mt-2 flex justify-between rounded-t-md align-middle"
 	>
 		<div>
 			<a
@@ -81,7 +81,7 @@
 			></button
 		>
 	</div>
-	<div>
+	<div class="pb-4">
 		{#if formattedCode}
 			<pre class="language-{language} rounded-b-md gist" data-output="2-17"><code class="language-{language}"
 					>{#if language === 'none'}{formattedCode}{:else}{@html formattedCode}{/if}</code
