@@ -1,5 +1,5 @@
 ---
-title: Using a pre-commit to run Flake8 on staged files
+title: Using a pre-commit hook to run Flake8 on staged files
 date: '2022-09-29'
 tags:
   - 'python'

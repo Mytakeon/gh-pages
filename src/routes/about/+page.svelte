@@ -7,11 +7,11 @@
 <h1>Hi! 👋</h1>
 
 <p>
-	My name is Arthur. I work as a Software Engineer in Dublin. Feel free to reach out by
+	My name is Arthur. I work as a Software Engineer in London. Feel free to reach out by
 	<a href="mailto:arthur.alglave(at)gmail.com">email</a> or find me on
 	<a href="https://www.linkedin.com/in/arthur-alglave/">LinkedIn</a>.
 </p>
-<br>
+<br />
 
 <p>
 	This website is built with <a href="https://kit.svelte.dev/">SvelteKit</a> and deployed with

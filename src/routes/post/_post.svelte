@@ -36,7 +36,7 @@
 			Written on {formatDate(date)} (<a
 				target="_blank"
 				rel="noreferrer"
-				href={`https://github.com/Mytakeon/gh-pages/blob/master/src/routes/${$page.routeId}/+page.md`}
+				href={`https://github.com/Mytakeon/gh-pages/blob/master/src/routes/${$page.route.id}/+page.md`}
 				>source</a
 			>)
 		</span>
